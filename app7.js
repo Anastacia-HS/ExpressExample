@@ -29,6 +29,7 @@ app.use(function(req, res, next) {
   res.writeHead('200', {'Content-Type' : 'text/html; charset=utf-8'});
   res.write('<h1>Express 서버에서 응답한 결과입니다. </h1>');
   res.write('<div><p>Param id : ' + paramId + '</p></div>');
+  res.write('<div><p>Param password : ' + paramPassword + '</p></div>');
   res.end();
 });
 
