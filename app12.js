@@ -28,7 +28,7 @@ app.use('/public', static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 
 // 세션 설정
-applicationCache.use(expressSession ({
+app.use(expressSession ({
   secret: 'my key',
   resave: true,
   saveUninitialized: true
