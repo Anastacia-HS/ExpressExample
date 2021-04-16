@@ -11,7 +11,7 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 
 // app.use('/public' 추가)
-applicationCache.use('/public', static(path.join(__dirname, 'public')));
+app.use('/public', static(path.join(__dirname, 'public')));
 
 //라우터 객체 잠조
 var router = express.Router();
@@ -19,7 +19,7 @@ var router = express.Router();
 // 라우팅 함수 등록
 router.route('/process/login').post(function(req, res) {
   console.log('/process/login 처리함');
-  var praramId = req.body.id || req.query.id;
+  var paramId = req.body.id || req.query.id;
   var paramPassword = req.body.password || req.query.password;
   res.writeHead('200', {'Content-Type' : 'text/html; charset=utf-8'});
   res.wirte('<h1>Express 서버에서 응답한 결과입니다. </h1>');
@@ -31,6 +31,16 @@ router.route('/process/login').post(function(req, res) {
 
 //라우터 객체를 app 객체에 등록
 app.use('/', router);
+
+// 404 에러 페이지 처리
+var errorHandler = expressErrorHandler({
+  static: {
+    '404': './public/404.html'
+  }
+});
+
+app.use(expressErrorHandler.httpError(404));
+app.use(errorHandler);
 
 // Express 서버 시작
 http.createServer(app).listen(app.get('port'), function() {
