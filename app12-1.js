@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 // body-parser를 이용해 application/json 파싱
 app.use(bodyParser.json())
 
-app.use('/public', static(path.join(__dirname, 'public')));
+app.use(static(path.join(__dirname, 'public')));
 
 // cookie-parser 설정
 app.use(cookieParser());
@@ -48,7 +48,7 @@ router.route('/process/login').post(function(req, res) {
     // 이미 로그인된 상태
     console.log('이미 로그인 되어 상품 페이지로 이동합니다.');
 
-    res.redirect('/public/product.html');
+    res.redirect('/product.html');
   }else {
     // 세션 저장
     req.session.user = {
@@ -79,13 +79,13 @@ router.route('/process/logout').get(function(req, res) {
       if(err) {throw err;}
 
       console.log('세션을 삭제하고 로그아웃되었습니다.');
-      res.redirect('/public/login2.html');
+      res.redirect('/login2.html');
     });
   }else {
     // 로그인 안 된 상태
     console.log('아직 로그인 되어있지 않습니다.');
     
-    res.redirect('/public/login2.html');
+    res.redirect('/login2.html');
   }
 });
 
@@ -94,9 +94,9 @@ router.route('/process/product').get(function(req, res) {
   console.log('/process/product 호출됨.');
 
   if(req.session.user) {
-    res.redirect('/public/product.html');
+    res.redirect('/product.html');
   }else {
-    res.redirect('/public/login2.html');
+    res.redirect('/login2.html');
   }
 });
 
