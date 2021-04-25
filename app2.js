@@ -12,3 +12,8 @@ app.use(function(req, res, next) {
   res.writeHead('200', {'Content-Type' : 'text/html; charset=utf-8'});
   res.end('<h1>Express 서버에서 응답한 결과입니다. </h1>');
 })
+
+// Express 서버 시작
+http.createServer(app).listen(app.get('port'), function() {
+  console.log('Express server listening on port' + app.get('port'));
+});

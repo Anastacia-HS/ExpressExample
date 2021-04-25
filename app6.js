@@ -17,3 +17,8 @@ app.use(function(req, res,next) {
   res.write('<div><p>Param name : ' + paramName + '</p></div>');
   res.end();
 })
+
+// Express 서버 시작
+http.createServer(app).listen(app.get('port'), function() {
+  console.log('Express server listening on port' + app.get('port'));
+});

@@ -19,3 +19,8 @@ app.use(function(req, res, next) {
   res.write(personStr);
   res.end();
 });
+
+// Express 서버 시작
+http.createServer(app).listen(app.get('port'), function() {
+  console.log('Express server listening on port' + app.get('port'));
+});
